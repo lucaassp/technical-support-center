@@ -9,6 +9,7 @@ import com.supportcenter.technicalsupportcenter.domains.enums.Priority;
 import com.supportcenter.technicalsupportcenter.domains.enums.Status;
 import com.supportcenter.technicalsupportcenter.repositories.CalledRepository;
 import com.supportcenter.technicalsupportcenter.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,8 +36,9 @@ public class CalledService {
     }
 
     @Transactional(readOnly = true)
-    public CalledDTO findById(Long id) {
-        return calledRepository.findById(id).map(c -> new CalledDTO(c)).orElseThrow(() -> new ResourceNotFoundException("Id " + id + " not found"));
+    public Called findById(Long id) {
+        Optional<Called> obj = calledRepository.findById(id);
+        return obj.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado! Id: " + id));
     }
 
     private Called newCalled(CalledDTO obj) {
@@ -63,5 +66,17 @@ public class CalledService {
     @Transactional
     public Called insert(CalledDTO dto) {
         return calledRepository.save(newCalled(dto));
+    }
+
+    @Transactional
+    public Called update(Long id, @Valid CalledDTO dto) {
+        try {
+            dto.setId(id);
+            Called oldObj = findById(id);
+            oldObj = newCalled(dto);
+            return calledRepository.save(oldObj);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException("Objeto não encontrado! Id: " + id);
+        }
     }
 }

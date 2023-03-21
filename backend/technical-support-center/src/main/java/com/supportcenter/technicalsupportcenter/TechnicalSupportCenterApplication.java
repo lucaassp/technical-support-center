@@ -38,7 +38,7 @@ public class TechnicalSupportCenterApplication implements CommandLineRunner {
 		t1.addProfile(ProfileStatus.ADMIN);
 		Technician t2 = new Technician(null, "Lucas Ferreira", "45675896042", "lucas.ferreira@teste.com", "DEEFRrfgr#");
 		Technician t3 = new Technician(null, "Carlos Andre", "45283849950", "carlos.andre@teste.com", "D$R%FR");
-		Technician t4 = new Technician(null, "Valdir Cezar", "550.482.150-95", "valdir@mail.com", "ksldjsl&%$dj");
+		Technician t4 = new Technician(null, "Kaio Silva", "550.482.150-95", "kaio@mail.com", "ksldjsl&%$dj");
 		Technician t5 = new Technician(null, "Richard Stallman", "903.347.070-56", "stallman@mail.com", "ksldj345#sldj");
 		Technician t6 = new Technician(null, "Claude Elwood Shannon", "271.068.470-54", "shannon@mail.com", "ksldj85858sldj");
 		Technician t7 = new Technician(null, "Tim Berners-Lee", "162.720.120-39", "lee@mail.com", "ksldjsldj");

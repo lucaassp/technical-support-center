@@ -1,6 +1,7 @@
 package com.supportcenter.technicalsupportcenter.resources;
 
 import com.supportcenter.technicalsupportcenter.domains.Called;
+import com.supportcenter.technicalsupportcenter.domains.Client;
 import com.supportcenter.technicalsupportcenter.domains.dto.CalledDTO;
 import com.supportcenter.technicalsupportcenter.domains.dto.ClientDTO;
 import com.supportcenter.technicalsupportcenter.services.CalledService;
@@ -28,8 +29,8 @@ public class CalledResource {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<CalledDTO> findById(@PathVariable Long id) {
-        CalledDTO calledId = calledService.findById(id);
-        return ResponseEntity.ok().body(calledId);
+        Called obj = calledService.findById(id);
+        return ResponseEntity.ok().body(new CalledDTO(obj));
     }
 
     @PostMapping
@@ -40,8 +41,8 @@ public class CalledResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CalledDTO> update(@PathVariable Long id, @Valid @RequestBody ClientDTO dto) {
-        dto = calledService.update(id, dto);
-        return ResponseEntity.ok().body(dto);
+    public ResponseEntity<CalledDTO> update(@PathVariable Long id, @Valid @RequestBody CalledDTO objDTO) {
+        Called newObj = calledService.update(id, objDTO);
+        return ResponseEntity.ok().body(new CalledDTO(newObj));
     }
 }
