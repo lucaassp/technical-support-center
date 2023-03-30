@@ -1,11 +1,10 @@
 package com.supportcenter.technicalsupportcenter.domains;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.supportcenter.technicalsupportcenter.domains.enums.ProfileStatus;
+import com.supportcenter.technicalsupportcenter.domains.enums.Profile;
 import jakarta.persistence.*;
-
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -28,11 +27,11 @@ public abstract class User implements Serializable {
     @ElementCollection(fetch = FetchType.EAGER) // quando o usuario for Called a coleção venha junto
     @CollectionTable(name = "tb_profiles")
     protected Set<Integer> profiles = new HashSet<>();
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    protected LocalDate creationDate = LocalDate.now();
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    protected LocalDateTime creationDate = LocalDateTime.now();
 
     public User() {
-        addProfile(ProfileStatus.CLIENT);
+        addProfile(Profile.CLIENT);
     }
 
     public User(Long id, String name, String cpf, String email, String password) {
@@ -41,7 +40,7 @@ public abstract class User implements Serializable {
         this.cpf = cpf;
         this.email = email;
         this.password = password;
-        addProfile(ProfileStatus.CLIENT);
+        addProfile(Profile.CLIENT);
     }
 
     public Long getId() {
@@ -84,19 +83,19 @@ public abstract class User implements Serializable {
         this.password = password;
     }
 
-    public Set<ProfileStatus> getProfiles() {
-        return profiles.stream().map(x -> ProfileStatus.valueOf(x)).collect(Collectors.toSet());
+    public Set<Profile> getProfiles() {
+        return profiles.stream().map(x -> Profile.valueOf(x)).collect(Collectors.toSet());
     }
 
-    public void addProfile(ProfileStatus profile) {
+    public void addProfile(Profile profile) {
         this.profiles.add(profile.getCode());
     }
 
-    public LocalDate getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 

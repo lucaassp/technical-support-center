@@ -4,7 +4,6 @@ import com.supportcenter.technicalsupportcenter.domains.Called;
 import com.supportcenter.technicalsupportcenter.domains.Client;
 import com.supportcenter.technicalsupportcenter.domains.Technician;
 import com.supportcenter.technicalsupportcenter.domains.dto.CalledDTO;
-import com.supportcenter.technicalsupportcenter.domains.dto.ClientDTO;
 import com.supportcenter.technicalsupportcenter.domains.enums.Priority;
 import com.supportcenter.technicalsupportcenter.domains.enums.Status;
 import com.supportcenter.technicalsupportcenter.repositories.CalledRepository;
@@ -16,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -51,7 +51,7 @@ public class CalledService {
             called.setId(obj.getId());
         }
         if (obj.getStatus().equals(2)){
-            called.setClosingDate(LocalDate.now());
+            called.setClosingDate(LocalDateTime.now());
         }
 
         called.setTechnician(technician);

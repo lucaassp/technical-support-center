@@ -4,7 +4,7 @@ import com.supportcenter.technicalsupportcenter.domains.Called;
 import com.supportcenter.technicalsupportcenter.domains.Client;
 import com.supportcenter.technicalsupportcenter.domains.Technician;
 import com.supportcenter.technicalsupportcenter.domains.enums.Priority;
-import com.supportcenter.technicalsupportcenter.domains.enums.ProfileStatus;
+import com.supportcenter.technicalsupportcenter.domains.enums.Profile;
 import com.supportcenter.technicalsupportcenter.domains.enums.Status;
 import com.supportcenter.technicalsupportcenter.repositories.CalledRepository;
 import com.supportcenter.technicalsupportcenter.repositories.ClientRepository;
@@ -35,7 +35,7 @@ public class TechnicalSupportCenterApplication implements CommandLineRunner {
 
 		// Criando técnicos
 		Technician t1 = new Technician(null, "José Santos", "45678912309", "jose.santos@teste.com", "s#$gfdhg");
-		t1.addProfile(ProfileStatus.ADMIN);
+		t1.addProfile(Profile.ADMIN);
 		Technician t2 = new Technician(null, "Lucas Ferreira", "45675896042", "lucas.ferreira@teste.com", "DEEFRrfgr#");
 		Technician t3 = new Technician(null, "Carlos Andre", "45283849950", "carlos.andre@teste.com", "D$R%FR");
 		Technician t4 = new Technician(null, "Kaio Silva", "550.482.150-95", "kaio@mail.com", "ksldjsl&%$dj");

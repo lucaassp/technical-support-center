@@ -1,16 +1,13 @@
 package com.supportcenter.technicalsupportcenter.resources;
 
 import com.supportcenter.technicalsupportcenter.domains.Called;
-import com.supportcenter.technicalsupportcenter.domains.Client;
 import com.supportcenter.technicalsupportcenter.domains.dto.CalledDTO;
-import com.supportcenter.technicalsupportcenter.domains.dto.ClientDTO;
 import com.supportcenter.technicalsupportcenter.services.CalledService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import java.net.URI;
 import java.util.List;
 

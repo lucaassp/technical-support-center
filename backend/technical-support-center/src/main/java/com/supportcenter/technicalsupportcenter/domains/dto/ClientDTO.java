@@ -2,11 +2,10 @@ package com.supportcenter.technicalsupportcenter.domains.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.supportcenter.technicalsupportcenter.domains.Client;
-import com.supportcenter.technicalsupportcenter.domains.enums.ProfileStatus;
+import com.supportcenter.technicalsupportcenter.domains.enums.Profile;
 import jakarta.validation.constraints.NotNull;
-
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -24,8 +23,8 @@ public class ClientDTO implements Serializable {
     @NotNull(message = "Password cannot be null")
     protected String password;
     protected Set<Integer> profiles = new HashSet<>();
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    protected LocalDate creationDate = LocalDate.now();
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    protected LocalDateTime creationDate = LocalDateTime.now();
 
     public ClientDTO() {
     }
@@ -80,19 +79,19 @@ public class ClientDTO implements Serializable {
         this.password = password;
     }
 
-    public Set<ProfileStatus> getProfiles() {
-        return profiles.stream().map(x -> ProfileStatus.valueOf(x)).collect(Collectors.toSet());
+    public Set<Profile> getProfiles() {
+        return profiles.stream().map(x -> Profile.valueOf(x)).collect(Collectors.toSet());
     }
 
     public void setProfiles(Set<Integer> profiles) {
         this.profiles = profiles;
     }
 
-    public LocalDate getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 }

@@ -3,17 +3,19 @@ package com.supportcenter.technicalsupportcenter.domains.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.supportcenter.technicalsupportcenter.domains.Called;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class CalledDTO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     private Long id;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate openingDate = LocalDate.now();
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate closingDate;
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime openingDate = LocalDateTime.now();
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalDateTime closingDate;
     @NotNull(message = "Priority cannot be null")
     private Integer priority;
     @NotNull(message = "Status cannot be null")
@@ -56,19 +58,19 @@ public class CalledDTO implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getOpeningDate() {
+    public LocalDateTime getOpeningDate() {
         return openingDate;
     }
 
-    public void setOpeningDate(LocalDate openingDate) {
+    public void setOpeningDate(LocalDateTime openingDate) {
         this.openingDate = openingDate;
     }
 
-    public LocalDate getClosingDate() {
+    public LocalDateTime getClosingDate() {
         return closingDate;
     }
 
-    public void setClosingDate(LocalDate closingDate) {
+    public void setClosingDate(LocalDateTime closingDate) {
         this.closingDate = closingDate;
     }
 

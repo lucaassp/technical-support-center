@@ -1,11 +1,10 @@
 package com.supportcenter.technicalsupportcenter.domains;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.supportcenter.technicalsupportcenter.domains.enums.ProfileStatus;
+import com.supportcenter.technicalsupportcenter.domains.enums.Profile;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +18,12 @@ public class Client extends User {
     private List<Called> calleds = new ArrayList<>();
 
     public Client() {
-        addProfile(ProfileStatus.CLIENT);
+        addProfile(Profile.CLIENT);
     }
 
     public Client(Long id, String name, String cpf, String email, String password) {
         super(id, name, cpf, email, password);
-        addProfile(ProfileStatus.CLIENT);
+        addProfile(Profile.CLIENT);
     }
 
     public List<Called> getCalleds() {

@@ -4,9 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.supportcenter.technicalsupportcenter.domains.enums.Priority;
 import com.supportcenter.technicalsupportcenter.domains.enums.Status;
 import jakarta.persistence.*;
-
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -16,10 +15,10 @@ public class Called implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate openingDate = LocalDate.now();
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate closingDate;
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime openingDate = LocalDateTime.now();
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime closingDate;
     private Priority priority;
     private Status status;
     private String title;
@@ -52,19 +51,19 @@ public class Called implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getOpeningDate() {
+    public LocalDateTime getOpeningDate() {
         return openingDate;
     }
 
-    public void setOpeningDate(LocalDate openingDate) {
+    public void setOpeningDate(LocalDateTime openingDate) {
         this.openingDate = openingDate;
     }
 
-    public LocalDate getClosingDate() {
+    public LocalDateTime getClosingDate() {
         return closingDate;
     }
 
-    public void setClosingDate(LocalDate closingDate) {
+    public void setClosingDate(LocalDateTime closingDate) {
         this.closingDate = closingDate;
     }
 
